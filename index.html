@@ -6,9 +6,178 @@
   <title>Yunisha Chaudhary | Aspiring Computer Engineer</title>
   <meta name="description" content="Portfolio of Yunisha Chaudhary, a hardworking Grade 12 student passionate about computer engineering, coding, and app development.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Your full CSS and HTML code continues exactly as provided -->
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f5f0fa;
+      --fg: #1e1b2e;
+      --card: #ffffff;
+      --primary: #7c5cbf;
+      --primary-light: rgba(124,92,191,0.1);
+      --accent: #a855c8;
+      --accent-light: rgba(168,85,200,0.1);
+      --secondary: #9b8ec4;
+      --muted: #7a7394;
+      --border: #e5dff0;
+      --gradient-primary: linear-gradient(135deg, #7c5cbf, #a855c8);
+      --gradient-hero: linear-gradient(180deg, #f5f0fa, #ede5f7);
+      --shadow: 0 10px 40px -10px rgba(124,92,191,0.2);
+      --shadow-glow: 0 0 40px rgba(155,142,196,0.3);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 0;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo {
+      font-size: 1.2rem; font-weight: 800;
+      background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-weight: 500; color: var(--fg); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--primary); }
+    .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: var(--gradient-hero); padding-top: 80px; text-align: center;
+    }
+    .hero-photo {
+      width: 200px; height: 200px; border-radius: 50%; object-fit: cover;
+      border: 4px solid var(--primary); box-shadow: var(--shadow-glow); margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 3rem; font-weight: 800;
+      background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .hero .subtitle { font-size: 1.25rem; color: var(--muted); margin-bottom: 12px; font-weight: 500; }
+    .hero .intro { max-width: 600px; margin: 0 auto 28px; color: #3a3552; }
+    .btn {
+      display: inline-block; padding: 12px 28px; border-radius: 10px; font-weight: 600;
+      font-size: 0.95rem; cursor: pointer; transition: all 0.3s; border: none;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: #6a4aad; transform: scale(1.05); }
+    .btn-outline {
+      background: transparent; color: var(--primary); border: 2px solid var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary-light); transform: scale(1.05); }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    section { padding: 80px 0; }
+    .section-title {
+      font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 8px;
+      background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .section-subtitle { text-align: center; color: var(--muted); font-size: 1.05rem; margin-bottom: 48px; }
+
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 32px; box-shadow: var(--shadow); transition: all 0.3s;
+    }
+    .card:hover { box-shadow: var(--shadow-glow); transform: translateY(-4px); }
+
+    .icon-box {
+      width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+    }
+    .icon-primary { background: var(--primary-light); color: var(--primary); }
+    .icon-accent { background: var(--accent-light); color: var(--accent); }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    .card-row { display: flex; gap: 16px; align-items: flex-start; }
+    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .card p { color: #3a3552; font-size: 0.95rem; }
+    .text-muted { color: var(--muted); }
+
+    .bg-muted { background: #ede5f7; }
+    .project-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; overflow: hidden; }
+    .project-img { width: 100%; height: 100%; object-fit: cover; min-height: 250px; background: var(--primary-light); }
+    .project-info { padding: 32px; display: flex; flex-direction: column; justify-content: center; }
+    .tag {
+      display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 500;
+    }
+    .tag-primary { background: var(--primary-light); color: var(--primary); }
+    .tag-accent { background: var(--accent-light); color: var(--accent); }
+    .tag-secondary { background: rgba(155,142,196,0.15); color: var(--secondary); }
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 20px; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .skill-card { text-align: left; }
+    .skill-card .icon-box { margin-bottom: 14px; }
+    .skill-card h3 { font-size: 1rem; }
+    .skill-card p { font-size: 0.85rem; color: var(--muted); }
+    .learning-badge {
+      display: inline-block; margin-top: 40px; padding: 20px 32px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      box-shadow: var(--shadow); text-align: center;
+    }
+
+    .services-card { max-width: 650px; margin: 0 auto; text-align: center; }
+    .services-card .icon-box { width: 64px; height: 64px; font-size: 1.8rem; margin: 0 auto 20px; border-radius: 50%; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 900px; margin: 0 auto; }
+    .contact-left { display: flex; flex-direction: column; gap: 20px; }
+    .contact-card { display: flex; align-items: center; gap: 16px; }
+    .social-links { display: flex; gap: 12px; margin-top: 8px; }
+    .social-link {
+      width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.2rem; transition: all 0.3s;
+    }
+    .social-link:hover { transform: scale(1.1); }
+
+    input, textarea {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px;
+      font-family: inherit; font-size: 0.95rem; background: var(--bg); transition: border-color 0.3s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--primary); }
+    label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 6px; }
+    .form-group { margin-bottom: 20px; }
+    textarea { resize: none; }
+
+    footer {
+      padding: 28px 0; text-align: center; background: var(--card);
+      border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem;
+    }
+    footer .heart { color: var(--primary); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 60px; left: 0; right: 0; background: rgba(255,255,255,0.98);
+        padding: 20px; gap: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .hero h1 { font-size: 2rem; }
+      .about-grid, .project-card, .contact-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 2fr; }
+    }
+
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    .animate { animation: fadeInUp 0.8s ease forwards; }
+  </style>
 </head>
 <body>
-  <!-- Full content pasted exactly as you provided -->
+
+<!-- FULL BODY CONTENT EXACTLY AS PROVIDED -->
+
 </body>
 </html>
